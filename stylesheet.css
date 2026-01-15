@@ -1,0 +1,9 @@
+.ssw-label {
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0 12px;
+}
+
+.ssw-hidden {
+  opacity: 0;
+}

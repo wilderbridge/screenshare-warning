@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.screenshare-warning.wilderbridge" path="/org/gnome/shell/extensions/screenshare-warning/">
+    <key name="warning-text" type="s">
+      <default>"SCREEN IS BEING SHARED"</default>
+      <summary>Warning text</summary>
+      <description>Text shown in the top bar when screen sharing is active.</description>
+    </key>
+
+    <key name="panel-color" type="s">
+      <default>"#ff7a00"</default>
+      <summary>Panel background color</summary>
+      <description>Background color of the top bar while screen sharing is active.</description>
+    </key>
+
+    <key name="text-color" type="s">
+      <default>"#ffffff"</default>
+      <summary>Warning text color</summary>
+      <description>Color of the warning text in the top bar.</description>
+    </key>
+
+    <key name="blink-interval-ms" type="i">
+      <default>500</default>
+      <summary>Blink interval (ms)</summary>
+      <description>Time between blinks in milliseconds.</description>
+    </key>
+
+    <key name="border-enabled" type="b">
+      <default>true</default>
+      <summary>Screen border</summary>
+      <description>Show a border around the primary monitor while sharing.</description>
+    </key>
+
+    <key name="border-width" type="i">
+      <default>3</default>
+      <summary>Border width</summary>
+      <description>Width of the screen border in pixels (1-5).</description>
+    </key>
+
+    <key name="preview-active" type="b">
+      <default>false</default>
+      <summary>Preview warning</summary>
+      <description>Temporarily show the warning without sharing.</description>
+    </key>
+  </schema>
+</schemalist>

@@ -1,0 +1,11 @@
+{
+  "uuid": "screenshare-warning@wilderbridge",
+  "name": "Screen Share Warning",
+  "description": "Highlights the top bar and shows a blinking warning when screen sharing is active.",
+  "author": "Niklas Siltakorpi <niklas@northco.de>",
+  "license": "MIT",
+  "url": "https://github.com/wilderbridge/screenshare-warning",
+  "version": 1,
+  "settings-schema": "org.gnome.shell.extensions.screenshare-warning.wilderbridge",
+  "shell-version": ["49"]
+}

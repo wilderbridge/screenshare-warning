@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build extension zip
+        run: |
+          rm -f screenshare-warning@wilderbridge.zip
+          rm -f schemas/gschemas.compiled
+          rm -rf screenshare-warning@wilderbridge
+          mkdir -p screenshare-warning@wilderbridge
+          cp -a \
+            extension.js \
+            prefs.js \
+            metadata.json \
+            stylesheet.css \
+            schemas \
+            README.md \
+            LICENSE \
+            screenshot.png \
+            screenshare-warning@wilderbridge/
+          zip -r screenshare-warning@wilderbridge.zip screenshare-warning@wilderbridge
+
+      - name: Upload release asset
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: screenshare-warning@wilderbridge.zip
+
+      - name: Upload workflow artifact
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshare-warning@wilderbridge
+          path: screenshare-warning@wilderbridge.zip
