@@ -30,7 +30,6 @@ jobs:
             schemas \
             README.md \
             LICENSE \
-            screenshot.png \
             screenshare-warning@wilderbridge/
           zip -r screenshare-warning@wilderbridge.zip screenshare-warning@wilderbridge
 

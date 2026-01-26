@@ -419,19 +419,7 @@ export default class ScreenShareWarning extends Extension {
 
       // Start blinking
       if (!this._blinkSource) {
-        this._blinkOn = true;
-        this._blinkSource = GLib.timeout_add(
-          GLib.PRIORITY_DEFAULT,
-          this._getBlinkIntervalMs(),
-          () => {
-            if (!this._sharingActive) {
-              return GLib.SOURCE_REMOVE;
-            }
-            this._blinkOn = !this._blinkOn;
-            this._setBlinkState(this._blinkOn);
-            return GLib.SOURCE_CONTINUE;
-          }
-        );
+        this._restartBlink();
       }
     } else {
       if (this._panelActor) {

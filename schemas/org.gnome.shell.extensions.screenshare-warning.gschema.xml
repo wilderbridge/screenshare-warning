@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gnome.shell.extensions.screenshare-warning.wilderbridge" path="/org/gnome/shell/extensions/screenshare-warning/">
+  <schema id="org.gnome.shell.extensions.screenshare-warning" path="/org/gnome/shell/extensions/screenshare-warning/">
     <key name="warning-text" type="s">
       <default>"SCREEN IS BEING SHARED"</default>
       <summary>Warning text</summary>
