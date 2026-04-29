@@ -4,7 +4,7 @@
   "description": "Highlights the top bar and shows a blinking warning when screen sharing is active.",
   "author": "Niklas Siltakorpi <niklas@northco.de>",
   "url": "https://github.com/wilderbridge/screenshare-warning",
-  "version": 1,
+  "version": 2,
   "settings-schema": "org.gnome.shell.extensions.screenshare-warning",
-  "shell-version": ["49"]
+  "shell-version": ["49", "50"]
 }

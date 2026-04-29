@@ -4,7 +4,6 @@ import St from 'gi://St';
 import Clutter from 'gi://Clutter';
 import GLib from 'gi://GLib';
 import Gio from 'gi://Gio';
-import Meta from 'gi://Meta';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -76,28 +75,26 @@ export default class ScreenShareWarning extends Extension {
 
     this._remoteShareCount = 0;
     this._remoteHandleStops = new Map();
-    if (Meta.is_wayland_compositor()) {
-      this._remoteAccessController = global.backend.get_remote_access_controller();
-      if (this._remoteAccessController) {
-        this._remoteHandleAddedId = this._remoteAccessController.connect('new-handle', (_, handle) => {
-          if (this._ignoreRemoteHandles) {
-            return;
-          }
-          const stopId = handle.connect('stopped', () => {
-            handle.disconnect(stopId);
-            this._remoteHandleStops.delete(handle);
-            this._remoteShareCount = Math.max(0, this._remoteShareCount - 1);
-            this._sync();
-          });
-          this._remoteHandleStops.set(handle, stopId);
-          if (!handle.is_recording) {
-            this._remoteShareCount += 1;
-            this._borderArmed = true;
-            this._suppressBorders = false;
-          }
+    this._remoteAccessController = global.backend?.get_remote_access_controller?.() ?? null;
+    if (this._remoteAccessController) {
+      this._remoteHandleAddedId = this._remoteAccessController.connect('new-handle', (_, handle) => {
+        if (this._ignoreRemoteHandles) {
+          return;
+        }
+        const stopId = handle.connect('stopped', () => {
+          handle.disconnect(stopId);
+          this._remoteHandleStops.delete(handle);
+          this._remoteShareCount = Math.max(0, this._remoteShareCount - 1);
           this._sync();
         });
-      }
+        this._remoteHandleStops.set(handle, stopId);
+        if (!handle.is_recording) {
+          this._remoteShareCount += 1;
+          this._borderArmed = true;
+          this._suppressBorders = false;
+        }
+        this._sync();
+      });
     }
 
     // Watch indicator visibility (proxy for "sharing active")
